@@ -1,0 +1,10 @@
+{
+    "law" : "strs-strain",
+    "bC" : "non-reflecting",
+    "dt" : 0.1,
+    "mu" :
+    {
+        "mu_0" : 0.9,
+        "mu_1" : 4.0
+    }
+}

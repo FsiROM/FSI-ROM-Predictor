@@ -1,0 +1,13 @@
+{
+    "law" : "strs-strain",
+    "E" : 10000.0,
+    "E1" : 12500.0,
+    "alpha" : 5.0,
+    "eps0" : 0.002,
+    "dt" : 0.1,
+    "ROM" :
+    {
+        "file_name" : "trainedROMs/solidROM.pkl",
+        "launch_time" : 0.0
+    }
+}

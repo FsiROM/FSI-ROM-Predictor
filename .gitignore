@@ -1,0 +1,6 @@
+*.DS_Store
+**/.ipynb_checkpoints
+**/.virtual_documents
+**/__pycache__
+
+coSimData/*.npy

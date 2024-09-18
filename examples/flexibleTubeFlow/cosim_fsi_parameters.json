@@ -1,0 +1,134 @@
+{
+    "problem_data" :
+    {
+        "start_time" : 0.0,
+        "end_time" : 119.95,
+        "echo_level" : 0,
+        "print_colors" : true,
+        "parallel_type" : "OpenMP"
+    },
+    "solver_settings" :
+    {
+        "type" : "coupled_solvers.gauss_seidel_strong",
+        "echo_level" : 1,
+        "num_coupling_iterations" : 85,
+        "predictors" : [
+            {
+                "type" : "surrogateBased",
+                "solver"    : "blood",
+                "data_name" : "pressure",
+                "prediction_launch_time" : 0.0,
+                "max_iters"              : 35,
+                "rel_tolerance"          : 2e-2,
+                "w0"                     : 0.04,
+                "retraining_launch_time" : 0,
+                "commonDispReducer"      : false,
+                "file_nameFluid"              : "./trainedROMs/fluidSurrog.pkl",
+                "file_nameSolid"              : "./trainedROMs/solidROM.pkl"
+            }
+        ],
+        "convergence_accelerators" : [
+            {
+                "type"      : "iqnilsM",
+                "solver"    : "blood",
+                "data_name" : "pressure",
+                "timestep_horizon" : 2,
+                "alpha" : 0.4,
+                "iteration_horizon" : 40,
+                "epsilon"           : 7e-2,
+                "prediction_launch_time" : 300.8,
+                "training_launch_time" : 300.0
+            }
+        ],
+        "convergence_criteria" : [
+            {
+                "type"          : "relative_norm_previous_residual",
+                "solver"        : "artery",
+                "data_name"     : "section",
+                "abs_tolerance" : 5e-4,
+                "rel_tolerance" : 1e-4
+            },
+            {
+                "type"          : "relative_norm_previous_residual",
+                "solver"        : "blood",
+                "data_name"     : "pressure",
+                "abs_tolerance" : 1e-2,
+                "rel_tolerance" : 1e-4
+            }
+        ],
+        "data_transfer_operators" : {
+            "transfer_pressure" : {
+                "type" : "copy"
+            },
+            "transfer_section" : {
+                "type" : "copy"
+            }
+        },
+        "coupling_sequence":
+        [
+        {
+            "name": "artery",
+            "input_data_list": [
+                {
+                    "data"              : "pressure",
+                    "from_solver"         : "blood",
+                    "from_solver_data"    : "pressure",
+                    "data_transfer_operator" : "transfer_pressure",
+                    "data_transfer_operator_options" : []
+                }
+            ],
+            "output_data_list": [
+                {
+                    "data"              : "section",
+                    "to_solver"         : "blood",
+                    "to_solver_data"    : "section",
+                    "data_transfer_operator" : "transfer_section",
+                    "data_transfer_operator_options" : []
+                }
+            ]
+        },
+        {
+            "name": "blood",
+            "input_data_list": [],
+            "output_data_list": []
+        }
+        ],
+        "solvers" :
+        {
+            "blood":
+            {
+                "type" : "solver_wrappers.blood.bloodSolver_wrapper",
+                "solver_wrapper_settings" : {
+                    "input_file"  : "fsi_par/fluidParams.json"
+                    },
+                "data" : {
+                    "section" : {
+                        "model_part_name" : "Blood.circumference",
+                        "variable_name" : "DISPLACEMENT_X"
+                    },
+                    "pressure" : {
+                        "model_part_name" : "Blood.circumference",
+                        "variable_name" : "PRESSURE"
+                    }
+                }
+            },
+            "artery" :
+            {
+                "type" : "solver_wrappers.artery.arterySolver_wrapper",
+                "solver_wrapper_settings" : {
+                    "input_file"  : "fsi_par/solidParams.json"
+                },
+                "data" : {
+                    "section" : {
+                        "model_part_name" : "Artery.circumference",
+                        "variable_name" : "DISPLACEMENT_X"
+                    },
+                    "pressure" : {
+                        "model_part_name" : "Artery.circumference",
+                        "variable_name" : "PRESSURE"
+                    }
+                }
+            }
+        }
+    }
+}

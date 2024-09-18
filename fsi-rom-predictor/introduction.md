@@ -70,7 +70,7 @@ In this work, we propose to construct a data-driven predictor, based on the use 
 A "reduced FSI coupling" is launched at the start of each time step, where each subsystem $\mathcal{F}$ and $\mathcal{S}$ is replaced by its reduced equivalent $\hat{\mathcal{F}}$ and $\hat{\mathcal{S}}$, and the solution
 
 $$
-    \hat{\mathcal{F}}(\hat{\mathcal{S}}(\pmb{f}^0)) = \pmb{f}^0
+    \hat{\mathcal{F}}(\hat{\mathcal{S}}(\boldsymbol{f}^0)) = \boldsymbol{f}^0
 $$
 
 is sought at a fraction of the computational time needed for the FOM-FOM problem solver calls. Those iterations will be called henceforth *local iterations*.
@@ -90,7 +90,7 @@ $$
 where $\mathcal{E}$, $\mathcal{D}$ and $\mathcal{I}$ refer to the Encoders, Decoders and regressors respectively. $r_u$ and $r_f$ are the latent dimensions of the displacement and the forces respectively.
 
 $$
-\hat{\mathcal{F}}: \mathbb{R}^{2 N} \rightarrow \mathbb{R}^{N}\;;\; (\pmb{u}, \pmb{f}^{n-1}) \rightarrow {\pmb{f}} = \mathcal{D}_F(\mathcal{I}_F([\mathcal{E}_S(\pmb{u}), \mathcal{E}_F(\pmb{f}^{n-1})]^T)) .
+\hat{\mathcal{F}}: \mathbb{R}^{2 N} \rightarrow \mathbb{R}^{N}\;;\; (\boldsymbol{u}, \boldsymbol{f}^{n-1}) \rightarrow {\boldsymbol{f}} = \mathcal{D}_F(\mathcal{I}_F([\mathcal{E}_S(\boldsymbol{u}), \mathcal{E}_F(\boldsymbol{f}^{n-1})]^T)) .
 $$
 
 An illustration of these ROMs can be shown as

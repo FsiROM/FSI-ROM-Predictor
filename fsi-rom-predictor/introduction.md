@@ -30,7 +30,7 @@ $`
 
 ![Coupled](../figs/Coupled.png "Coupled")
 
-![CoupledSovlers](../figs/CoupledSolvers.png "Coupled Solvers")
+![CoupledSolvers](../figs/CoupledSolvers.png "Coupled Solvers")
 
 
 One approach to solve this problem  at each time step is to compute Picard iterations plus a fixed-point acceleration using Quasi-Newton methods for the FSI problem:

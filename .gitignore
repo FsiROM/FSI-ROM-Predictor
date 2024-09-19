@@ -3,4 +3,7 @@
 **/.virtual_documents
 **/__pycache__
 
-coSimData/*.npy
+examples/flexibleTubeFlow/coSimData/*.npy
+examples/twoFsiFlaps/coSimData/*.npy
+examples/twoFsiFlaps/vtk_output_fsi_cfd/*.vtk
+examples/twoFsiFlaps/vtk_output_fsi_csm/*.vtk

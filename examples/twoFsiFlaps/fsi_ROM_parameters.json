@@ -40,8 +40,8 @@
                 "w0"                     : 0.04,
                 "retraining_launch_time" : 1.1,
                 "re_train_thres" : 200,
-                "file_nameFluid"              : "replicationROMs/fluidROMreplic.pkl",
-                "file_nameSolid"              : "replicationROMs/solidROMreplic.pkl",
+                "file_nameFluid"              : "trainedROMs/fluidROM.pkl",
+                "file_nameSolid"              : "trainedROMs/solidROM.pkl",
                 "extrapolation_order"         : 1
             }
         ],
@@ -159,7 +159,7 @@
                 "save_model" : false,
                 "save_training_data" : false,
                 "use_map" : true,
-                "file" : {"file_name" : "replicationROMs/solidROMreplic.pkl"}
+                "file" : {"file_name" : "trainedROMs/solidROM.pkl"}
             }
         }
     }

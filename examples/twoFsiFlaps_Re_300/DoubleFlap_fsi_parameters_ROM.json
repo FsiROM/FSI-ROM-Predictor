@@ -1,0 +1,157 @@
+{
+    "problem_data" :
+    {
+        "start_time" : 0.0,
+        "end_time" : 8.008,
+        "echo_level" : 0,
+        "print_colors" : true,
+        "parallel_type" : "OpenMP"
+    },
+    "solver_settings" :
+    {
+        "type" : "coupled_solvers.gauss_seidel_strong",
+        "echo_level" : 1,
+        "num_coupling_iterations" : 50,
+        "convergence_accelerators" : [
+             {
+                "type"      : "iqnils",
+                "solver"    : "fluid",
+                "data_name" : "load",
+                "timestep_horizon" : 3,
+                "alpha" : 0.5,
+                "iteration_horizon" : 50
+             }
+        ],
+        "predictors" :
+        [
+            {
+                "type"      : "surrogateBased",
+                "solver"    : "fluid",
+                "data_name" : "load",
+                "prediction_launch_time" : 0.8,
+                "max_iters"              : 35,
+                "rel_tolerance"          : 2e-2,
+                "w0"                     : 0.04,
+                "retraining_launch_time" : 1.1,
+                "re_train_thres" : 200,
+                "commonDispReducer" :true,
+                "file_nameFluid"              : "trainedROMs/fluidROM.pkl",
+                "file_nameSolid"              : "trainedROMs/solidROM.pkl"
+            }
+        ],
+        "convergence_criteria" : [
+            {
+                "type"          : "relative_norm_previous_residual",
+                "solver"        : "structure",
+                "data_name"     : "disp",
+                "abs_tolerance" : 5e-3,
+                "rel_tolerance" : 5e-3
+            },
+            {
+                "type"          : "relative_norm_previous_residual",
+                "solver"        : "fluid",
+                "data_name"     : "load",
+                "abs_tolerance" : 5e-3,
+                "rel_tolerance" : 5e-3
+            }
+        ],
+        "data_transfer_operators" : {
+            "mapper" : {
+                "type" : "kratos_mapping",
+                "mapper_settings" : {
+                    "mapper_type" : "nearest_neighbor"
+                }
+            }
+        },
+        "coupling_sequence":
+        [
+            {
+                "name": "structure",
+                "input_data_list"  : [
+                {
+                    "interval" : [-0.0, 800.0],
+                    "data"             : "load",
+                    "from_solver"      : "fluid",
+                    "from_solver_data" : "load",
+                    "data_transfer_operator" : "mapper",
+                    "data_transfer_operator_options" : ["swap_sign"]
+                }],
+                "rom_receiving_data" :
+                [
+                    {
+                    "from_solver"      : "fluid",
+                    "from_solver_data" : "load"
+                    }
+                ],
+                "output_data_list" : [{
+                    "data"           : "disp",
+                    "to_solver"      : "fluid",
+                    "to_solver_data" : "disp",
+                    "data_transfer_operator" : "mapper"
+                }]
+            },
+            {
+                "name": "fluid",
+                "input_data_list": [],
+                "output_data_list": []
+            }
+        ],
+        "solvers" :
+        {
+            "fluid":
+            {
+                "type" : "solver_wrappers.kratos.fluid_dynamics_wrapper",
+                "solver_wrapper_settings" : {
+                    "input_file"  : "ProjectParametersCFD"
+                },
+                "data" : {
+                    "disp" : {
+                        "model_part_name"   : "FluidModelPart.FluidNoSlipInterface2D_FSI_fluid_interface_Auto1",
+                        "dimension" : 2,
+                        "variable_name" : "MESH_DISPLACEMENT"
+                    },
+                    "load" : {
+                        "model_part_name"   : "FluidModelPart.FluidNoSlipInterface2D_FSI_fluid_interface_Auto1",
+                        "dimension" : 2,
+                        "variable_name" : "REACTION"
+                    },
+                    "velocity" : {
+                        "model_part_name"   : "FluidModelPart.FluidNoSlipInterface2D_FSI_fluid_interface_Auto1",
+                        "dimension" : 2,
+                        "variable_name" : "VELOCITY"
+                    }
+                }
+            },
+            "structure" :
+            {
+                "launch_time" : 800.0,
+                "start_collecting_time": 300.0,
+                "stop_collecting_time": -10.0,
+                "input_data"              : {"data" : "load"},
+                "output_data"              : {"data" : "disp"},
+                "interface_only" : false,
+                "imported_model" : true,
+                "save_model" : false,
+                "save_training_data" : false,
+                "use_map" : true,
+                "file" : {"file_name" : "used_ROMs/cpcSolidROM22.pkl"},
+                "type" : "solver_wrappers.kratos.structural_ROM_wrapper",
+                "solver_wrapper_settings" : {
+                    "input_file"  : "ProjectParametersCSM"
+                },
+                "data" : {
+                    "disp" : {
+                        "model_part_name"   : "Structure.LineLoad2D_Load_on_lines_Auto1",
+                        "dimension" : 2,
+                        "variable_name" : "DISPLACEMENT"
+                    },
+                    "load" : {
+                        "model_part_name"   : "Structure.LineLoad2D_Load_on_lines_Auto1",
+                        "dimension" : 2,
+                        "variable_name" : "POINT_LOAD"
+                    }
+                }
+            }
+        }
+    }
+}

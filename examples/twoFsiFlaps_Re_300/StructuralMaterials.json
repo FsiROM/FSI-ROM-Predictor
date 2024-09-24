@@ -1,0 +1,17 @@
+{
+    "properties" : [{
+        "model_part_name" : "Structure.Parts_Solid_Solid_Auto1",
+        "properties_id"   : 2,
+        "Material"        : {
+            "constitutive_law" : {
+                "name" : "HyperElasticPlaneStrain2DLaw"
+            },
+            "Variables"        : {
+                "DENSITY"       : 1.225,
+                "YOUNG_MODULUS" : 10000000.0,
+                "POISSON_RATIO" : 0.3
+            },
+            "Tables"           : null
+        }
+    }]
+}

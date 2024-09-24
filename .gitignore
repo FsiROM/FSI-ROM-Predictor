@@ -7,3 +7,12 @@ examples/flexibleTubeFlow/coSimData/*.npy
 examples/twoFsiFlaps/coSimData/*.npy
 examples/twoFsiFlaps/vtk_output_fsi_cfd/*.vtk
 examples/twoFsiFlaps/vtk_output_fsi_csm/*.vtk
+examples/twoFsiFlaps/results/**/*.vtk
+
+examples/flexibleTubeFlow/results/**/*.npy
+examples/flexibleTubeFlow/data/**/*.npy
+examples/flexibleTubeFlow/trainedROMs/*.pkl
+
+examples/twoFsiFlaps/results/**/*.npy
+examples/twoFsiFlaps/trainedROMs/**/*.pkl
+examples/twoFsiFlaps/trainingData/**/*.npy

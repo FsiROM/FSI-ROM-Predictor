@@ -4,7 +4,7 @@
 
 This repository contains a presentation of the approach presented in [1] of ML-based predictors for Fluid-Structure Interaction (FSI) simulations.
 
-The repository also contains files corresponding to the two example cases in the paper. This include configuration files for running the simulations, data files used in training the Reduced Order Models (ROMs), and notebooks and files showing the API to train and use the models and reproduce the papers' results.
+The repository also contains files corresponding to the two example cases in the paper. This include configuration files for running the simulations, data files used in training the Reduced Order Models (ROMs), and notebooks and files showing the API to train and use the models and replicate the papers' results.
 
 ## Theory
 

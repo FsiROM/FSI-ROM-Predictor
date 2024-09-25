@@ -1,1 +1,1 @@
-See [`./twoFsiFLaps_Re_300.ipynb`](./twoFsiFLaps_Re_300.ipynb).
+See [`./twoFsiFlaps_Re_300.ipynb`](./twoFsiFlaps_Re_300.ipynb).

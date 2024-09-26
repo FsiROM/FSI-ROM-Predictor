@@ -97,7 +97,7 @@ An illustration of these ROMs can be shown as
 
 ![CoupledROMs](../figs/CoupledROMs.png "Coupled ROMs")
 
-In fact, the black-box approach of the coupling can even allow the user to choose his favourite regression and Encoder-Decoder methods. This can be done to replace the solid solver (a notebook explaining the process can be found [here](https://github.com/FsiROM/SIMWorkshop/blob/main/FsiROM.ipynb).), and will be soon implemented for the predictor as well.
+In fact, the black-box approach of the coupling can even allow the user to choose his favourite regression and Encoder-Decoder methods. This can be done to replace the solid solver (a notebook explaining the process can be found [here](https://github.com/FsiROM/SIMWorkshop/blob/main/FsiROM.ipynb), and will be soon implemented for the predictor as well).
 
 # Implementation
 

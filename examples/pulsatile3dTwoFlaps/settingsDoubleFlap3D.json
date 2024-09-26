@@ -1,0 +1,162 @@
+{
+    "problem_data" :
+    {
+        "start_time" : 0.0,
+        "end_time" : 6.6,
+        "echo_level" : 1,
+        "print_colors" : true,
+        "parallel_type" : "OpenMP"
+    },
+    "solver_settings" :
+    {
+        "type" : "coupled_solvers.gauss_seidel_strong",
+        "echo_level" : 1,
+        "num_coupling_iterations" : 50,
+        "convergence_accelerators" : [
+            {
+                "type"      : "iqnilsM",
+                "solver"    : "fluid",
+                "data_name" : "load",
+                "training_launch_time"   : 700.0,
+                "training_end_time"      : -10.0,
+                "prediction_end_time"    : -6.0,
+                "prediction_launch_time" : 300.0,
+                "timestep_horizon" : 3,
+                "alpha" : 0.25,
+                "iteration_horizon" : 50
+            }
+        ],
+        "predictors" :
+        [	
+            {
+                "type"      : "surrogateBased",
+                "solver"    : "fluid",
+                "data_name" : "load",
+                "prediction_launch_time" : 0.02,
+                "max_iters"              : 60,
+                "rel_tolerance"          : 1e-4,
+                "w0"                     : 0.04,
+                "retraining_launch_time" : 0.1,
+                "commonDispReducer"		: true,
+                "file_nameFluid"              : "./trainedROMs/fluidROM.pkl",
+                "file_nameSolid"              : "trainedROMs/solidROM.pkl",
+                "re_train_thres" : 240
+            }
+        ],
+        "convergence_criteria" : [
+	   {
+                "type"          : "relative_norm_previous_residual",
+                "solver"        : "structure",
+                "data_name"     : "disp",
+                "rel_tolerance" : 5e-3,
+                "abs_tolerance" : 1e-8
+            },
+          {
+                "type"          : "relative_norm_previous_residual",
+                "solver"        : "fluid",
+                "data_name"     : "load",
+                "rel_tolerance" : 5e-4,
+                "abs_tolerance" : 1e-4
+          }
+        ],
+        "save_tr_data" : false,
+        "training_launch_time" : 10.0,
+        "training_end_time" : 10.0,
+        "data_transfer_operators" : {
+            "mapper" : {
+                "type" : "kratos_mapping",
+                "mapper_settings" : {
+                    "mapper_type" : "nearest_neighbor"
+                }
+            }
+        },
+        "coupling_sequence":
+        [
+            {
+                "name": "structure",
+                "input_data_list"  : [{
+                    "interval" : [-0.0, 22000],
+                    "data" : "load",
+                    "from_solver" : "fluid",
+                    "from_solver_data" : "load",
+                    "data_transfer_operator" : "mapper",
+                    "data_transfer_operator_options" : ["swap_sign"]}
+                ],
+                "rom_receiving_data" : [{
+                    "from_solver" : "fluid",
+                    "from_solver_data" : "load"
+                }],
+                "output_data_list" : [{
+                    "data"           : "disp",
+                    "to_solver"      : "fluid",
+                    "to_solver_data" : "disp",
+                    "data_transfer_operator" : "mapper"
+                }]
+            },
+            {
+                "name": "fluid",
+                "input_data_list": [],
+                "output_data_list": []
+            }
+        ],
+        "solvers" :
+        {
+            "fluid":
+            {
+                "type" : "solver_wrappers.kratos.fluid_dynamics_wrapper",
+                "solver_wrapper_settings" : {
+                    "input_file"  : "ProjectParametersCFD"
+                },
+                "data" : {
+                    "disp" : {
+                        "model_part_name"   : "FluidModelPart.interface",
+                        "dimension" : 3,
+                        "variable_name" : "MESH_DISPLACEMENT"
+                    },
+                    "load" : {
+                        "model_part_name"   : "FluidModelPart.interface",
+                        "dimension" : 3,
+                        "variable_name" : "REACTION"
+                    },
+                    "velocity" : {
+                        "model_part_name"   : "FluidModelPart.interface",
+                        "dimension" : 3,
+                        "variable_name" : "VELOCITY"
+                    }
+                }
+            },
+            "structure" :
+            {
+                "type" : "solver_wrappers.kratos.structural_ROM_wrapper",
+                "solver_wrapper_settings" : {
+                    "input_file"  : "ProjectParametersCSM"
+                },
+                "data" : {
+                    "disp" : {
+                        "model_part_name"   : "solid.interface",
+                        "dimension" : 3,
+                        "variable_name" : "DISPLACEMENT"
+                    },
+                    "load" : {
+                        "model_part_name"   : "solid.interface",
+                        "dimension" : 3,
+                        "variable_name" : "POINT_LOAD"
+                    }
+                },
+                "launch_time" : 0.02,
+                "start_collecting_time": 4000.0,
+                "stop_collecting_time" : -12.5,
+                "input_data"              : {"data" : "load"},
+                "output_data"              : {"data" : "disp"},
+                "interface_only" : false,
+                "imported_model" : true,
+                "save_model" : false,
+                "save_training_data" : false,
+                "use_map" : true,
+                "volumetric_strain_dofs"               : true,
+                "file" : {"file_name" : "trainedROMs/solidROM.pkl"},
+                "file_strain" : {"file_name" : "trainedROMs/strainROM.pkl"}
+            }
+        }
+    }
+}

@@ -1,0 +1,133 @@
+{
+    "problem_data"             : {
+        "problem_name"    : "Structural",
+        "parallel_type"   : "OpenMP",
+        "start_time"      : 0.0,
+        "end_time"        : 6.6,
+        "echo_level"      : 0
+    },
+    "solver_settings"          : {
+        "solver_type"                          : "Static",
+        "model_part_name"                      : "solid",
+        "domain_size"                          : 3,
+        "echo_level"                           : 0,
+        "analysis_type"                        : "non_linear",
+        "model_import_settings"                : {
+            "input_type"     : "mdpa",
+            "input_filename" : "./meshData/solidMesh"
+        },
+        "material_import_settings"             : {
+            "materials_filename" : "StructuralMaterials.json"
+        },
+        "time_stepping"               : {
+            "time_step"           : 0.01
+        },
+        "convergence_criterion"                : "residual_criterion",
+        "volumetric_strain_dofs"	       : true,
+        "displacement_relative_tolerance"      : 1e-8,
+        "displacement_absolute_tolerance"      : 1e-9,
+        "residual_relative_tolerance"          : 1e-8,
+        "residual_absolute_tolerance"          : 1e-9,
+        "max_iteration"                        : 25,
+        "rotation_dofs"                        : false,
+        "linear_solver_settings"               : {
+            "solver_type" : "amgcl",
+            "tolerance" : 1e-8
+        }
+    },
+    "processes" : {
+        "constraints_process_list" : [{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorVariableProcess",
+            "Parameters"    : {
+                "model_part_name" : "solid.bottom",
+                "variable_name"   : "DISPLACEMENT",
+                "interval"        : [0.0,"End"],
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0]
+            }
+        },
+        {
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorVariableProcess",
+            "Parameters"    : {
+                "model_part_name" : "solid.zPos",
+                "variable_name"   : "DISPLACEMENT",
+                "constrained"     : [false,false,true],
+                "value"           : [null,null,0.0]
+            }
+        },{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorVariableProcess",
+            "Parameters"    : {
+                "model_part_name" : "solid.zNeg",
+                "variable_name"   : "DISPLACEMENT",
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0]
+            }
+        },{
+			"python_module" : "create_point_based_entites_process",
+			"kratos_module" : "KratosMultiphysics.CoSimulationApplication.processes",
+			"Parameters" : {
+				"model_part_name" : "solid.interface",
+				"new_sub_model_part_name" : "struct_sub",
+				"entity_name" : "PointLoadCondition3D1N",
+				"entity_type" : "condition",
+				"properties_id" : 0
+			}
+        }],
+        "loads_process_list"       : [],
+        "list_other_processes"     : [{
+            "python_module"  : "point_output_process",
+            "kratos_module"  : "KratosMultiphysics",
+            "process_name"   : "PointOutputProcess",
+            "Parameters"            : {
+                "position"         : [0.5, 0.28, 0.492],
+                "model_part_name"  : "solid",
+		"search_tolerance" : 0.001,
+                "output_file_settings": {
+                    "file_name"   : "coSimData/centerLeftPoint"
+                },
+                "output_variables" : ["DISPLACEMENT_X", "DISPLACEMENT_Y", "DISPLACEMENT_Z", "POINT_LOAD_X", "POINT_LOAD_Y", "POINT_LOAD_Z"],
+                "entity_type"      : "node" 
+	    }},
+	    {
+	    "python_module"  : "point_output_process",
+            "kratos_module"  : "KratosMultiphysics",
+            "process_name"   : "PointOutputProcess",
+            "Parameters"            : {
+	        "position"         : [0.82, 0.28, 0.492],
+                "model_part_name"  : "solid",
+		"search_tolerance" : 0.001,
+                "output_file_settings": {
+                    "file_name"   : "coSimData/centerRightPoint"
+                },
+                "output_variables" : ["DISPLACEMENT_X", "DISPLACEMENT_Y", "DISPLACEMENT_Z", "POINT_LOAD_X", "POINT_LOAD_Y", "POINT_LOAD_Z"],
+                "entity_type"      : "node"
+            }}
+	]
+    },
+    "output_processes" : {
+        "vtk_output" : [{
+            "python_module" : "vtk_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "VtkOutputProcess",
+            "help"          : "This process writes postprocessing files for Paraview",
+            "Parameters"    : {
+                "model_part_name"                    : "solid",
+                "output_control_type"                : "step",
+                "output_interval"                    : 1,
+                "file_format"                        : "binary",
+                "output_precision"                   : 5,
+                "output_sub_model_parts"             : false,
+                "output_path"                        : "doubleFlap_CSM",
+                "save_output_files_in_folder"        : true,
+                "nodal_solution_step_data_variables" : ["DISPLACEMENT", "POINT_LOAD"],
+                "gauss_point_variables_in_elements" : ["PK2_STRESS_VECTOR"]
+            }
+        }]
+     }
+}

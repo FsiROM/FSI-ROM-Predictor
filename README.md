@@ -2,6 +2,19 @@
 
 ![GraphicalAbstract](./figs/GraphicalAbstract.png "Graphical Abstract")
 
+[![CC BY-NC-ND 4.0][cc-by-nc-nd-shield]][cc-by-nc-nd]
+
+This work is licensed under a
+[Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License][cc-by-nc-nd].
+
+[![CC BY-NC-ND 4.0][cc-by-nc-nd-image]][cc-by-nc-nd]
+
+[cc-by-nc-nd]: http://creativecommons.org/licenses/by-nc-nd/4.0/
+[cc-by-nc-nd-image]: https://licensebuttons.net/l/by-nc-nd/4.0/88x31.png
+[cc-by-nc-nd-shield]: https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg
+
+------------------------------------------------------------------------------------------------------------------------------------
+
 This repository contains a presentation of the approach presented in [1] of ML-based predictors for Fluid-Structure Interaction (FSI) simulations.
 
 The repository also contains files corresponding to the three example cases in the paper. This include configuration files for running the simulations, data files used in training the Reduced Order Models (ROM)s, and notebooks and files showing the API to train and use the models and replicate the papers' results.

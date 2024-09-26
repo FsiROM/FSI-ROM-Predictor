@@ -15,7 +15,7 @@ We also refer to [1] and [2].
 
 You can clone this repository using
 ```
-git clone --depth 1 --branch CPC https://github.com/FsiROM/FSI-ROM-Predictor.git
+git clone --depth 1 --branch comphy https://github.com/FsiROM/FSI-ROM-Predictor.git
 ```
 
 The implementation of this approach is done using [KratosMultiphysics](https://github.com/KratosMultiphysics/Kratos) and the [ROM_AM](https://github.com/azzeddinetiba/ROM_AM) package. The Kratos applications used are:

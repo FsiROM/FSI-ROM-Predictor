@@ -134,7 +134,7 @@
                 "save_model" : false,
                 "save_training_data" : false,
                 "use_map" : true,
-                "file" : {"file_name" : "used_ROMs/cpcSolidROM22.pkl"},
+                "file" : {"file_name" : "used_ROMs/solidROM.pkl"},
                 "type" : "solver_wrappers.kratos.structural_ROM_wrapper",
                 "solver_wrapper_settings" : {
                     "input_file"  : "ProjectParametersCSM"

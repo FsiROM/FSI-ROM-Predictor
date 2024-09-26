@@ -1,6 +1,6 @@
 # To replicate
 
-In : [`../../../../fsi_ROM_parameters.json`](../../../../fsi_ROM_parameters.json):
+In : [`../../../../DoubleFlap_fsi_parameters_ROM.json`](../../../../DoubleFlap_fsi_parameters_ROM.json):
 ```
 "predictors" : [
     {
@@ -11,11 +11,11 @@ In : [`../../../../fsi_ROM_parameters.json`](../../../../fsi_ROM_parameters.json
         "max_iters"              : 35,
         "rel_tolerance"          : 2e-2,
         "w0"                     : 0.04,
-        "retraining_launch_time" : 1100.0,
+        "retraining_launch_time" : 1.1,
         "re_train_thres" : 200,
+        "commonDispReducer" :true,
         "file_nameFluid"              : "trainedROMs/fluidROM.pkl",
-        "file_nameSolid"              : "trainedROMs/solidROM.pkl",
-        "extrapolation_order"         : 1
+        "file_nameSolid"              : "trainedROMs/solidROM.pkl"
     }
 ],
 ```
@@ -24,7 +24,7 @@ and
 "structure" :
 {
     "launch_time" : 800.0,
-    "start_collecting_time": 200.0,
+    "start_collecting_time": 300.0,
     "stop_collecting_time": -10.0,
     "imported_model" : true,
     "save_model" : false,
@@ -35,5 +35,5 @@ and
 
 In [`../../../../FluidMaterials.json`](../../../../FluidMaterials.json):
 ```
-"DYNAMIC_VISCOSITY" : 1.3
+"DYNAMIC_VISCOSITY" : 0.833333333
 ```

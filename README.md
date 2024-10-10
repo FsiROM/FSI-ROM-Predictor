@@ -28,20 +28,20 @@ We also refer to [1] and [2].
 
 You can clone this repository using
 ```
-git clone --depth 1 --branch main https://github.com/FsiROM/FSI-ROM-Predictor.git
+git clone --depth 1 --branch Comphy https://github.com/FsiROM/FSI-ROM-Predictor.git
 ```
 
-The implementation of this approach is done using [KratosMultiphysics](https://github.com/KratosMultiphysics/Kratos) and the [ROM_AM](https://github.com/azzeddinetiba/ROM_AM) package. The Kratos applications used are:
+The implementation of this approach is done using [KratosMultiphysics](https://github.com/FsiROM/Kratos/tree/Comphy) and the [ROM_AM](https://github.com/azzeddinetiba/ROM_AM/tree/Comphy) package. The Kratos applications used are:
 
-&nbsp;&nbsp;&nbsp;&nbsp;* [StructuralMechanicsApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/StructuralMechanicsApplication) as the FEM solid solver.
+&nbsp;&nbsp;&nbsp;&nbsp;* [StructuralMechanicsApplication](https://github.com/FsiROM/Kratos/tree/Comphy/applications/StructuralMechanicsApplication) as the FEM solid solver.
 
-&nbsp;&nbsp;&nbsp;&nbsp;* [FluidDynamicsApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/FluidDynamicsApplication) as the FEM fluid solver.
+&nbsp;&nbsp;&nbsp;&nbsp;* [FluidDynamicsApplication](https://github.com/FsiROM/Kratos/tree/Comphy/applications/FluidDynamicsApplication) as the FEM fluid solver.
 
-&nbsp;&nbsp;&nbsp;&nbsp;* [CoSimulationApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/CoSimulationApplication) as the black-box coupling library.
+&nbsp;&nbsp;&nbsp;&nbsp;* [CoSimulationApplication](https://github.com/FsiROM/Kratos/tree/Comphy/applications/CoSimulationApplication) as the black-box coupling library.
 
-The ROM-FOM coupling approach and the new data-driven predictors are implemented in [a forked version](https://github.com/FsiROM/Kratos) from the v9.4.2 release. The implementation mainly concerns the ROM wrapper for the coupling, as well as the new predictor, both acting non-intrusively on the solvers.
+The ROM-FOM coupling approach and the new data-driven predictors are implemented in [a forked version](https://github.com/FsiROM/Kratos/tree/Comphy) from the v9.4.2 release. The implementation mainly concerns the ROM wrapper for the coupling, as well as the new predictor, both acting non-intrusively on the solvers.
 
-The ROM methods used are implemented in the [ROM_AM](https://github.com/azzeddinetiba/ROM_AM) package. See [this demo](https://github.com/azzeddinetiba/ROM_AM/blob/main/examples/ReductionDemo.ipynb) for example.
+The ROM methods used are implemented in the [ROM_AM](https://github.com/azzeddinetiba/ROM_AM/tree/Comphy) package. See [this demo](https://github.com/azzeddinetiba/ROM_AM/tree/Comphy/examples/ReductionDemo.ipynb) for example.
 
 
 The simulations have been tested with:
@@ -52,9 +52,9 @@ The simulations have been tested with:
 
 
 ## Requirements
-&nbsp;&nbsp;&nbsp;&nbsp;* Compiling the FsiROM version of Kratos from source (See [here](https://github.com/FsiROM/Kratos/blob/master/INSTALL.md)).
+&nbsp;&nbsp;&nbsp;&nbsp;* Compiling the FsiROM version of Kratos from source (See [here](https://github.com/FsiROM/Kratos/tree/Comphy/INSTALL.md)).
 
-&nbsp;&nbsp;&nbsp;&nbsp;* Installing the ROM_AM package using pip (See [here](https://github.com/azzeddinetiba/ROM_AM/blob/main/README.md)).
+&nbsp;&nbsp;&nbsp;&nbsp;* Installing the ROM_AM package using pip (See [here](https://github.com/azzeddinetiba/ROM_AM/tree/Comphy/README.md)).
 
 ## Reproducibility
 

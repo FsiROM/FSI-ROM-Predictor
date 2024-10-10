@@ -107,18 +107,18 @@ An illustration of the implementation of the above ROMs can be seen as the follo
 
 The used classes are
 
-&nbsp;&nbsp;&nbsp;&nbsp;* [`solid_ROM`](https://github.com/azzeddinetiba/ROM_AM/blob/main/rom_am/solid_rom.py) that encompasses the solid ROM.
+&nbsp;&nbsp;&nbsp;&nbsp;* [`solid_ROM`](https://github.com/azzeddinetiba/ROM_AM/tree/Comphy/rom_am/solid_rom.py) that encompasses the solid ROM.
 
-&nbsp;&nbsp;&nbsp;&nbsp;* [`FluidSurrog`](https://github.com/azzeddinetiba/ROM_AM/blob/main/rom_am/fluid_surrogate.py) that encompasses the fluid ROM.
+&nbsp;&nbsp;&nbsp;&nbsp;* [`FluidSurrog`](https://github.com/azzeddinetiba/ROM_AM/tree/Comphy/rom_am/fluid_surrogate.py) that encompasses the fluid ROM.
 
-&nbsp;&nbsp;&nbsp;&nbsp;* [`RomDimensionalityReducer`](https://github.com/azzeddinetiba/ROM_AM/blob/main/rom_am/dimreducers/rom_DimensionalityReducer.py) that holds the encoder and decoder methods.
+&nbsp;&nbsp;&nbsp;&nbsp;* [`RomDimensionalityReducer`](https://github.com/azzeddinetiba/ROM_AM/tree/Comphy/rom_am/dimreducers/rom_DimensionalityReducer.py) that holds the encoder and decoder methods.
 
-&nbsp;&nbsp;&nbsp;&nbsp;* [`RomRegressor`](https://github.com/azzeddinetiba/ROM_AM/blob/main/rom_am/regressors/rom_regressor.py) that holds the regression function.
+&nbsp;&nbsp;&nbsp;&nbsp;* [`RomRegressor`](https://github.com/azzeddinetiba/ROM_AM/tree/Comphy/rom_am/regressors/rom_regressor.py) that holds the regression function.
 
 Every object of these classes has a <tt><span style="color:#d6d159">train()</span></tt>.
  and a <tt><span style="color:#d6d159">predict()</span></tt> method used in the offline and online steps respectively.
 
-Once trained, these *ROMs* can be imported and called inside [the new predictor](https://github.com/FsiROM/Kratos/blob/feature-CoSim-RomFom/applications/CoSimulationApplication/python_scripts/predictors/surrogateBased.py).
+Once trained, these *ROMs* can be imported and called inside [the new predictor](https://github.com/FsiROM/Kratos/tree/Comphy/applications/CoSimulationApplication/python_scripts/predictors/surrogateBased.py).
 
 
 The files associated to each example will be found in the corresponding folders. Each test case will involve different choices of the regression and dimensionality reduction methods. Notebooks detailing this can found inside those folders.

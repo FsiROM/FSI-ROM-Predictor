@@ -3,8 +3,6 @@ from KratosMultiphysics.CoSimulationApplication.co_simulation_analysis import Co
 from rom_am.fluid_surrogate import FluidSurrog
 from rom_am.fluid_hybrid_surrogate import HybridFluidSurrog
 
-#from replicatingFluidSurrogate import FluidSurrog
-#from replicatingFluidSurrogate import NewFluidSurrogNewer
 
 from KratosMultiphysics.CoSimulationApplication.convergence_accelerators.myNewSurrogatesNewer import NewFluidSurrogNewer
 

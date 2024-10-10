@@ -1,4 +1,4 @@
-# To replicate
+# To reproduce
 
 In : [`../../../../settingsDoubleFlap3D.json`](../../../../settingsDoubleFlap3D.json):
 ```

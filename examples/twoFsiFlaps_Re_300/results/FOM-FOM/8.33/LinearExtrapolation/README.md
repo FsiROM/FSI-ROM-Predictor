@@ -1,4 +1,4 @@
-# To replicate
+# To reproduce
 
 In : [`../../../../DoubleFlap_fsi_parameters_ROM.json`](../../../../DoubleFlap_fsi_parameters_ROM.json):
 ```

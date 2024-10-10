@@ -1,4 +1,4 @@
-# To replicate
+# To reproduce
 
 In : [`../../cosim_fsi_parameters.json`](../../cosim_fsi_parameters.json):
 ```

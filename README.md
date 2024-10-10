@@ -17,7 +17,7 @@ This work is licensed under a
 
 This repository contains a presentation of the approach presented in [1] of ML-based predictors for Fluid-Structure Interaction (FSI) simulations.
 
-The repository also contains files corresponding to the three example cases in the paper. This include configuration files for running the simulations, data files used in training the Reduced Order Models (ROM)s, and notebooks and files showing the API to train and use the models and replicate the papers' results.
+The repository also contains files corresponding to the three example cases in the paper. This include configuration files for running the simulations, data files used in training the Reduced Order Models (ROM)s, and notebooks and files showing the API to train and use the models and reproduce the papers' results.
 
 ## Theory
 
@@ -28,7 +28,7 @@ We also refer to [1] and [2].
 
 You can clone this repository using
 ```
-git clone --depth 1 --branch comphy https://github.com/FsiROM/FSI-ROM-Predictor.git
+git clone --depth 1 --branch main https://github.com/FsiROM/FSI-ROM-Predictor.git
 ```
 
 The implementation of this approach is done using [KratosMultiphysics](https://github.com/KratosMultiphysics/Kratos) and the [ROM_AM](https://github.com/azzeddinetiba/ROM_AM) package. The Kratos applications used are:
@@ -55,6 +55,20 @@ The simulations have been tested with:
 &nbsp;&nbsp;&nbsp;&nbsp;* Compiling the FsiROM version of Kratos from source (See [here](https://github.com/FsiROM/Kratos/blob/master/INSTALL.md)).
 
 &nbsp;&nbsp;&nbsp;&nbsp;* Installing the ROM_AM package using pip (See [here](https://github.com/azzeddinetiba/ROM_AM/blob/main/README.md)).
+
+## Reproducibility
+
+To reproduce the results presented in [[1]](#References), the [`Comphy` tag of this repository](https://github.com/FsiROM/FSI-ROM-Predictor/tree/Comphy)  should be used, as well as installing the `Comphy` tags of [`ROM_AM`](https://github.com/azzeddinetiba/rom_am/tree/Comphy) and [`KratosMultiphysics`](https://github.com/FsiROM/Kratos/tree/Comphy). See the installation instructions at each repository.
+
+```
+git clone --depth 1 --branch Comphy https://github.com/FsiROM/Kratos.git
+```
+```
+git clone --depth 1 --branch Comphy https://github.com/azzeddinetiba/ROM_AM.git
+```
+```
+git clone --depth 1 --branch Comphy https://github.com/FsiROM/FSI-ROM-Predictor.git
+```
 
 ## References
 

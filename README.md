@@ -70,6 +70,8 @@ git clone --depth 1 --branch Comphy https://github.com/azzeddinetiba/ROM_AM.git
 git clone --depth 1 --branch Comphy https://github.com/FsiROM/FSI-ROM-Predictor.git
 ```
 
+**Data files** : The results already obtained by the author, and used in [[1]](#References) are available in the form of `.vtk` files and `numpy` arrays stored in `.npy` files. These files are not available with the current repoistory due to their large volume. The files can be found in this [`Zeonodo` repository](https://zenodo.org/records/13909576). The Zenodo repository contains the fdata olders organized using the same folder structures of this repository. The user then can just replace the empty folders in this repository with the Zenodo folders. 
+
 ## References
 
 [1] [Azzeddine Tiba, Thibault Dairay, Florian De Vuyst, Iraj Mortazavi, Juan-Pedro Berro Ramirez (2024). Machine-Learning Enhanced Predictors for Accelerated Convergence of Partitioned Fluid-Structure Interaction Simulations. arXiv preprint arXiv:2405.09941](https://doi.org/10.48550/arXiv.2405.09941)

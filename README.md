@@ -70,7 +70,7 @@ git clone --depth 1 --branch Comphy https://github.com/azzeddinetiba/ROM_AM.git
 git clone --depth 1 --branch Comphy https://github.com/FsiROM/FSI-ROM-Predictor.git
 ```
 
-**Data files** : The results already obtained by the author, and used in [[1]](#References) are available in the form of `.vtk` files and `numpy` arrays stored in `.npy` files. These files are not available with the current repoistory due to their large volume. The files can be found in this [`Zeonodo` repository](https://zenodo.org/records/13909576). The Zenodo repository contains the fdata olders organized using the same folder structures of this repository. The user then can just replace the empty folders in this repository with the Zenodo folders. 
+**Data files** : The results already obtained by the author, and used in [[1]](#References) are available in the form of `.vtk` files and `numpy` arrays stored in `.npy` files. These files are not available with the current repository due to their large volume. The files can be found in this [`Zenodo` repository](https://zenodo.org/records/13909576). The Zenodo repository contains the data folders organized using the same structure of this repository. The user then can just replace the empty folders in this repository with the Zenodo folders. 
 
 ## References
 

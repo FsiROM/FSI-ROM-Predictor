@@ -74,6 +74,6 @@ git clone --depth 1 --branch Comphy https://github.com/FsiROM/FSI-ROM-Predictor.
 
 ## References
 
-[1] [Azzeddine Tiba, Thibault Dairay, Florian De Vuyst, Iraj Mortazavi, Juan-Pedro Berro Ramirez (2024). Machine-Learning Enhanced Predictors for Accelerated Convergence of Partitioned Fluid-Structure Interaction Simulations. arXiv preprint arXiv:2405.09941](https://doi.org/10.48550/arXiv.2405.09941)
+[1] [Tiba, Azzeddine, et al. "Machine-learning enhanced predictors for accelerated convergence of partitioned fluid-structure interaction simulations." Computer Physics Communications 310 (2025): 109522](https://doi.org/10.1016/j.cpc.2025.109522).
 
-[2] [Azzeddine Tiba, Thibault Dairay, Florian De Vuyst, Iraj Mortazavi, Juan-Pedro Berro Ramirez, Non-intrusive reduced order models for partitioned fluid–structure interactions, Journal of Fluids and Structures, Volume 128, 2024, 104156, ISSN 0889-9746.](https://doi.org/10.1016/j.jfluidstructs.2024.104156)
+[2] [Tiba, Azzeddine, et al. "Non-intrusive reduced order models for partitioned fluid–structure interactions." Journal of Fluids and Structures 128 (2024): 104156](https://doi.org/10.1016/j.jfluidstructs.2024.104156).

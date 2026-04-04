@@ -1,0 +1,63 @@
+cff-version: 1.0.0
+title: "FSI-ROM-Predictor"
+message: >
+  If you use these examples or notebooks in your work,
+  please cite the associated paper below.
+type: software
+
+authors:
+  - family-names: "Tiba"
+    given-names: "Azzeddine"
+    orcid: "https://orcid.org/0000-0003-3578-141X"
+
+repository-code: "https://github.com/FsiROM/FSI-ROM-Predictor"
+license: MIT
+version: "Comphy"
+date-released: "2024-09-10"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.13909575
+
+abstract: >
+  Reproducibility repository for the paper 
+  <Machine-learning enhanced predictors for accelerated convergence
+  of partitioned fluid-structure interaction simulations>. Contains
+  Jupyter notebooks and input files for all test cases and
+  benchmarks presented in the paper.
+
+keywords:
+  - reduced order models
+  - computational mechanics
+  - reproducible research
+  - benchmarks
+
+preferred-citation:
+  type: article
+  title: "Machine-Learning Enhanced Predictors for Accelerated Convergence of Partitioned Fluid-Structure Interaction Simulations"
+  authors:
+    - family-names: "Tiba"
+      given-names: "Azzeddine"
+    - family-names: "Dairay"
+      given-names: "Thibault"
+    - family-names: "De Vuyst"
+      given-names: "Florian"
+    - family-names: "Mortazavi"
+      given-names: "Iraj"
+    - family-names: "Berro Ramirez"
+      given-names: "Juan Pedro"
+  journal: "Computer Physics Communications"
+  year: 2025
+  volume: 310
+  start: 109522
+  doi: "10.1016/j.cpc.2025.109522"
+  url: "https://doi.org/10.1016/j.cpc.2025.109522"
+
+# --- Also credit the package itself ---
+references:
+  - type: software
+    title: "ROM_AM"
+    authors:
+      - family-names: "Tiba"
+        given-names: "Azzeddine"
+    repository-code: "https://github.com/azzeddinetiba/ROM_AM/"
+    notes: "ROM package used in all examples."

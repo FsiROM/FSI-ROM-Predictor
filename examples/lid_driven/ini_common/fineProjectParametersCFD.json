@@ -56,24 +56,10 @@
                 "model_part_name" : "FluidModelPart.VelocityConstraints2D_Inlet",
                 "variable_name"   : "VELOCITY",
                 "constrained"     : [true,true,true],
-                // "value"           : ["(1-cos(0.4*pi*t))*((y-0.875)/0.125)",0.0,0.0],
                 "value"           : ["1.0*(1-cos(0.4*pi*t))*((y-0.875)/0.125)",0.0,0.0],
                 "interval"        : [0.0,"End"]
             }
         },
-        // {
-        //     "python_module"         : "assign_vector_variable_process",
-        //     "kratos_module"         : "KratosMultiphysics",
-        //     "process_name"          : "AssignVectorVariableProcess",
-        //     "Parameters"            : {
-        //         "model_part_name" : "FluidModelPart.VelocityConstraints2D_Inlet",
-        //         "variable_name"   : "VELOCITY",
-        //         "constrained"     : [true,true,true],
-        //         // "value"           : ["(1-cos(0.4*pi*t))*((y-0.875)/0.125)",0.0,0.0],
-        //         "value"           : ["1.5*(1-cos(0.4*pi*t))*((y-0.875)/0.125)",0.0,0.0],
-        //         "interval"        : [100.0, 200.0]
-        //     }
-        // },
         {
             "python_module" : "apply_outlet_process",
             "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",

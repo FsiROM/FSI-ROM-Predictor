@@ -51,33 +51,6 @@
         }],
         "loads_process_list"       : [],
         "list_other_processes"     : [
-        //     {
-        //     "python_module"  : "point_output_process",
-        //     "kratos_module"  : "KratosMultiphysics",
-        //     "process_name"   : "PointOutputProcess",
-        //     "Parameters"            : {
-        //         "position"         : [0.5015, 0.25, 0.0],
-        //         "model_part_name"  : "Structure",
-        //         "output_file_settings": {
-        //             "file_name"   : "point_A"
-        //         },
-        //         "output_variables" : ["DISPLACEMENT_X"],
-        //         "entity_type"      : "node"
-        //     }
-        // },{
-        //     "python_module"  : "point_output_process",
-        //     "kratos_module"  : "KratosMultiphysics",
-        //     "process_name"   : "PointOutputProcess",
-        //     "Parameters"            : {
-        //         "position"         : [0.5005, 0.1261, 0.0],
-        //         "model_part_name"  : "Structure",
-        //         "output_file_settings": {
-        //             "file_name"   : "point_B"
-        //         },
-        //         "output_variables" : ["DISPLACEMENT_X"],
-        //         "entity_type"      : "element"
-        //     }
-        // },
         {
 			"python_module" : "create_point_based_entites_process",
 			"kratos_module" : "KratosMultiphysics.CoSimulationApplication.processes",

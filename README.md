@@ -1,6 +1,7 @@
-# Designing Machine Learning-Enhanced Predictors for Transient Fluid-Structure Interactions
+# ROM-assisted Predictors For Accelerated Convergence of Partitioned Fluid-Structure Interaction Simulations.
+ ### Online adaptive ROMs with local dynamic subspaces
 
-![GraphicalAbstract](./figs/GraphicalAbstract.png "Graphical Abstract")
+![GraphicalAbstract](./figs/scheme_simple_2_update.png "Graphical Abstract")
 
 [![CC BY-NC-ND 4.0][cc-by-nc-nd-shield]][cc-by-nc-nd]
 
@@ -13,48 +14,92 @@ This work is licensed under a
 [cc-by-nc-nd-image]: https://licensebuttons.net/l/by-nc-nd/4.0/88x31.png
 [cc-by-nc-nd-shield]: https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg
 
-------------------------------------------------------------------------------------------------------------------------------------
+This repository contains reproducible material for a new ROM-assisted predictor for partitioned FSI, using online adaptive ROMs, with local dynamic subspaces.
 
-This repository contains a presentation of the approach presented in [1] of ML-based predictors for Fluid-Structure Interaction (FSI) simulations.
 
-The repository also contains files corresponding to the three example cases in the paper. This include configuration files for running the simulations, data files used in training the Reduced Order Models (ROM)s, and notebooks and files showing the API to train and use the models and reproduce the papers' results.
+## Paper (2026)
 
-## Theory
+- Preprint / DOI: incoming ..
+- Citation text: incoming ..
+- Authors: Azzeddine Tiba, Florian De Vuyst, Iraj Mortazavi
 
-See an introduction of the approach in [introduction.md](./fsi-rom-predictor/introduction.md).
-We also refer to [1] and [2].
+## Reproducibility (2026 paper)
 
-## Software
+The goal of this repository is reproducibility across multiple FSI settings.
 
-You can clone this repository using
+### What is required
+
+1. A Kratos build compatible with the ROM-assisted coupling workflow used in this project.
+2. The `rom_am` Python package version pinned in each example `requirements.txt`.
+3. Example-specific Python environments (one per example is recommended).
+4. Access to large files and additional artifacts from Zenodo (see Data availability below).
+
+The new ROM-assisted predictors are implemented in [a forked version of Kratos](https://github.com/FsiROM/Kratos) from the v9.4.2 release.
+
+### Data availability (Zenodo)
+
+Some files for the two new examples are hosted externally.
+
+- Zenodo record: [	
+FSI-Online-ROM-Predictor-Data](https://zenodo.org/21860566)
+- Zenodo DOI: [TODO: add DOI]
+- The Zenodo repo has the same file tree as the current repo.
+
+### Reproduce the two new examples
+
+#### 1) `lid_driven`
+
+Folder: `examples/lid_driven`
+
+Install dependencies:
+
+```bash
+python -m venv .venv-lid
+source .venv-lid/bin/activate
+pip install -U pip
+pip install -r examples/lid_driven/requirements.txt
 ```
-git clone --depth 1 --branch main https://github.com/FsiROM/FSI-ROM-Predictor.git
+
+Run workflow:
+
+```bash
+cp ini_common/* .
+cp ini_testing_phase/* .
+python MainKratos.py
 ```
 
-The implementation of this approach is done using [KratosMultiphysics](https://github.com/KratosMultiphysics/Kratos) and the [ROM_AM](https://github.com/azzeddinetiba/ROM_AM) package. The Kratos applications used are:
-
-&nbsp;&nbsp;&nbsp;&nbsp;* [StructuralMechanicsApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/StructuralMechanicsApplication) as the FEM solid solver.
-
-&nbsp;&nbsp;&nbsp;&nbsp;* [FluidDynamicsApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/FluidDynamicsApplication) as the FEM fluid solver.
-
-&nbsp;&nbsp;&nbsp;&nbsp;* [CoSimulationApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/CoSimulationApplication) as the black-box coupling library.
-
-The ROM-FOM coupling approach and the new data-driven predictors are implemented in [a forked version](https://github.com/FsiROM/Kratos) from the v9.4.2 release. The implementation mainly concerns the ROM wrapper for the coupling, as well as the new predictor, both acting non-intrusively on the solvers.
-
-The ROM methods used are implemented in the [ROM_AM](https://github.com/azzeddinetiba/ROM_AM) package. See [this demo](https://github.com/azzeddinetiba/ROM_AM/blob/main/examples/ReductionDemo.ipynb) for example.
+Relevant outputs will be in the `CoSimData/` folder.
 
 
-The simulations have been tested with:
+#### 2) `fsi_turek`
 
-&nbsp;&nbsp;&nbsp;&nbsp;* MacOs 12.6 (arm64), Apple Clang 13.0.0 and Python 3.11 .
+Folder: `examples/fsi_turek`
 
-&nbsp;&nbsp;&nbsp;&nbsp;* Ubuntu 20.04 (X64), gcc 9.4.0 and Python 3.8 .
+Install dependencies:
 
+```bash
+python -m venv .venv-turek
+source .venv-turek/bin/activate
+pip install -U pip
+pip install -r examples/fsi_turek/requirements.txt
+```
 
-## Requirements
-&nbsp;&nbsp;&nbsp;&nbsp;* Compiling the FsiROM version of Kratos from source (See [here](https://github.com/FsiROM/Kratos/blob/master/INSTALL.md)).
+Run workflow:
 
-&nbsp;&nbsp;&nbsp;&nbsp;* Installing the ROM_AM package using pip (See [here](https://github.com/azzeddinetiba/ROM_AM/blob/main/README.md)).
+```bash
+cp ini_common/* .
+cp ini_testing_phase/* .
+python MainKratos.py
+```
+
+Relevant outputs will be in the `CoSimData/` folder.
+
+## Legacy context (2024 paper and material)
+
+The repository originally presented a similar approach, with the difference being the use of ROMs with global  bases, and with the use of ROM-FOM coupling for additional acceleration.
+
+- Previous paper reference and associated material are kept here for continuity.
+- Older examples and notebooks remain available.
 
 ## Reproducibility
 
@@ -74,6 +119,8 @@ git clone --depth 1 --branch Comphy https://github.com/FsiROM/FSI-ROM-Predictor.
 
 ## References
 
-[1] [Tiba, Azzeddine, et al. "Machine-learning enhanced predictors for accelerated convergence of partitioned fluid-structure interaction simulations." Computer Physics Communications 310 (2025): 109522](https://doi.org/10.1016/j.cpc.2025.109522).
+[1] [TODO: add new paper reference]
 
-[2] [Tiba, Azzeddine, et al. "Non-intrusive reduced order models for partitioned fluid–structure interactions." Journal of Fluids and Structures 128 (2024): 104156](https://doi.org/10.1016/j.jfluidstructs.2024.104156).
+[2] [Azzeddine Tiba, Thibault Dairay, Florian De Vuyst, Iraj Mortazavi, Juan-Pedro Berro Ramirez (2024). Machine-Learning Enhanced Predictors for Accelerated Convergence of Partitioned Fluid-Structure Interaction Simulations. arXiv preprint arXiv:2405.09941](https://doi.org/10.48550/arXiv.2405.09941)
+
+[3] [Azzeddine Tiba, Thibault Dairay, Florian De Vuyst, Iraj Mortazavi, Juan-Pedro Berro Ramirez, Non-intrusive reduced order models for partitioned fluid-structure interactions, Journal of Fluids and Structures, Volume 128, 2024, 104156, ISSN 0889-9746.](https://doi.org/10.1016/j.jfluidstructs.2024.104156)

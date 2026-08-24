@@ -29,12 +29,12 @@ The goal of this repository is reproducibility across multiple FSI settings.
 
 ### What is required
 
-1. A Kratos build compatible with the ROM-assisted coupling workflow used in this project.
+1. A Kratos build compatible with the ROM-assisted coupling workflow used in this project:
+- The new ROM-assisted predictors are implemented in [a forked version of Kratos (v.0n.Adptv)](https://github.com/FsiROM/Kratos/tree/v.On.Adptv) from the v9.4.2 release.
 2. The `rom_am` Python package version pinned in each example `requirements.txt`.
 3. Example-specific Python environments (one per example is recommended).
 4. Access to large files and additional artifacts from Zenodo (see Data availability below).
 
-The new ROM-assisted predictors are implemented in [a forked version of Kratos](https://github.com/FsiROM/Kratos) from the v9.4.2 release.
 
 ### Data availability (Zenodo)
 
@@ -96,10 +96,11 @@ Relevant outputs will be in the `CoSimData/` folder.
 
 ## Legacy context (2024 paper and material)
 
-The repository originally presented a similar approach, with the difference being the use of ROMs with global  bases, and with the use of ROM-FOM coupling for additional acceleration.
+The repository originally presented a similar approach, with the difference being the use of ROMs with global bases, and with the use of ROM-FOM coupling for additional acceleration:
 
-- Previous paper reference and associated material are kept here for continuity.
-- Older examples and notebooks remain available.
+- See [2, 3].
+- The associated, older examples and notebooks remain available.
+- The associated data repository is https://doi.org/10.5281/zenodo.13909576.
 
 ## Reproducibility
 

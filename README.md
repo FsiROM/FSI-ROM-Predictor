@@ -17,9 +17,9 @@ This work is licensed under a
 This repository contains reproducible material for a new ROM-assisted predictor for partitioned FSI, using online adaptive ROMs, with local dynamic subspaces.
 
 
-## Paper (2026)
+## Online adaptive non-intrusive model reduction via manifold interpolation and subspace updates: application to FSI convergence acceleration (2026)
 
-- Preprint / DOI: incoming ..
+- Preprint / DOI: TODO, incoming ..
 - Authors: Azzeddine Tiba, Florian De Vuyst, Iraj Mortazavi
 
 ## Reproducibility (2026 paper)

@@ -41,7 +41,7 @@ The used ROMs from the paper, for the two new examples, are saved in pickle file
 
 - Zenodo record: [	
 FSI-Online-ROM-Predictor-Data](https://zenodo.org/21860566)
-- Zenodo DOI: [TODO: add DOI]
+- Zenodo DOI: https://doi.org/10.5281/zenodo.22261698
 - The Zenodo repo has the same file tree as the current repo.
 
 ### Reproduce the two new examples

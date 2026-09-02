@@ -20,7 +20,6 @@ This repository contains reproducible material for a new ROM-assisted predictor 
 ## Paper (2026)
 
 - Preprint / DOI: incoming ..
-- Citation text: incoming ..
 - Authors: Azzeddine Tiba, Florian De Vuyst, Iraj Mortazavi
 
 ## Reproducibility (2026 paper)
@@ -33,12 +32,12 @@ The goal of this repository is reproducibility across multiple FSI settings.
 - The new ROM-assisted predictors are implemented in [a forked version of Kratos (v.0n.Adptv)](https://github.com/FsiROM/Kratos/tree/v.On.Adptv) from the v9.4.2 release.
 2. The `rom_am` Python package version pinned in each example `requirements.txt`.
 3. Example-specific Python environments (one per example is recommended).
-4. Access to large files and additional artifacts from Zenodo (see Data availability below).
+4. Access to the files of the saved ROMs from Zenodo (see Data availability below).
 
 
 ### Data availability (Zenodo)
 
-Some files for the two new examples are hosted externally.
+The used ROMs from the paper, for the two new examples, are saved in pickle files and are hosted externally.
 
 - Zenodo record: [	
 FSI-Online-ROM-Predictor-Data](https://zenodo.org/21860566)

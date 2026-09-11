@@ -1,0 +1,146 @@
+{
+    "problem_data" :
+    {
+        "start_time" : 0.0,
+        "end_time" : 100.0,
+        "echo_level" : 0,
+        "print_colors" : true,
+        "parallel_type" : "OpenMP"
+    },
+    "solver_settings" :
+    {
+        "type" : "coupled_solvers.gauss_seidel_strong",
+        "echo_level" : 1,
+        "num_coupling_iterations" : 24,
+        "convergence_accelerators" : [
+            {
+                "type"      : "iqnils",
+                "solver"    : "fluid",
+                "data_name" : "load",
+                "timestep_horizon"  : 5,
+                "removed_dofs" : [0, 1, -2, -1]
+            }
+        ],
+        "convergence_criteria" : [
+            {
+                "type"          : "relative_norm_previous_residual",
+                "solver"        : "fluid",
+                "data_name"     : "load",
+                "abs_tolerance" : 1e-7,
+                "rel_tolerance" : 1e-11,
+                "removed_dofs" : [0, 1, -2, -1]
+            }
+        ],
+        "data_transfer_operators" : {
+            "mapper" : {
+                "type" : "kratos_mapping",
+                "mapper_settings" : {
+                    "mapper_type" : "nearest_neighbor"
+                }
+            }
+        },
+        "predictors":[
+            {
+                "type"      : "quadratic",
+                "solver"    : "fluid",
+                "data_name" : "load",
+                "solverY"    : "structure",
+                "prediction_launch_time" : 36.0
+            }
+        ],
+        "coupling_sequence":
+        [
+            {
+                "name": "structure",
+                "input_data_list": [
+                    {
+                        "data"           : "load",
+                        "from_solver"      : "fluid",
+                        "from_solver_data" : "load",
+                        "data_transfer_operator" : "mapper",
+                        "data_transfer_operator_options" : ["swap_sign"]
+                    }
+                ],
+                "output_data_list": [
+                    {
+                        "data"           : "disp",
+                        "to_solver"      : "fluid",
+                        "to_solver_data" : "disp",
+                        "data_transfer_operator" : "mapper"
+                    }
+                    ,
+                    {
+                        "data"           : "velocity",
+                        "to_solver"      : "fluid",
+                        "to_solver_data" : "velocity",
+                        "data_transfer_operator" : "mapper"
+                    }
+                ]
+            },
+            {
+                "name": "fluid",
+                "input_data_list"  : [],
+                "output_data_list" : [
+                    {
+                        "data"           : "load",
+                        "to_solver"      : "structure",
+                        "to_solver_data" : "load",
+                        "data_transfer_operator" : "mapper",
+                        "data_transfer_operator_options" : ["swap_sign"]
+                    }
+                ]
+            }
+        ],
+        "solvers" :
+        {
+            "fluid":
+            {
+                "type" : "solver_wrappers.kratos.fluid_dynamics_wrapper",
+                "solver_wrapper_settings" : {
+                    "input_file"  : "fineProjectParametersCFD"
+                },
+                "data" : {
+                    "disp" : {
+                        "model_part_name"   : "FluidModelPart.FluidNoSlipInterface2D_FluidInterface",
+                        "dimension" : 2,
+                        "variable_name" : "MESH_DISPLACEMENT"
+                    },
+                    "load" : {
+                        "model_part_name"   : "FluidModelPart.FluidNoSlipInterface2D_FluidInterface",
+                        "dimension" : 2,
+                        "variable_name" : "REACTION"
+                    },
+                    "velocity" : {
+                        "model_part_name"   : "FluidModelPart.FluidNoSlipInterface2D_FluidInterface",
+                        "dimension" : 2,
+                        "variable_name" : "MESH_VELOCITY"
+                    }
+                }
+            },
+            "structure" :
+            {
+                "type" : "solver_wrappers.kratos.structural_mechanics_wrapper",
+                "solver_wrapper_settings" : {
+                    "input_file"  : "fineProjectParametersCSM"
+                },
+                "data" : {
+                    "disp" : {
+                        "model_part_name"   : "Structure.StructureInterface2D_StructureInterface",
+                        "dimension" : 2,
+                        "variable_name" : "DISPLACEMENT"
+                    },
+                    "load" : {
+                        "model_part_name"   : "Structure.StructureInterface2D_StructureInterface",
+                        "dimension" : 2,
+                        "variable_name" : "POINT_LOAD"
+                    },
+                    "velocity" : {
+                        "model_part_name"   : "Structure.StructureInterface2D_StructureInterface",
+                        "dimension" : 2,
+                        "variable_name" : "VELOCITY"
+                    }
+                }
+            }
+        }
+    }
+}

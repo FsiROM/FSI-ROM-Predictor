@@ -119,7 +119,7 @@ git clone --depth 1 --branch Comphy https://github.com/FsiROM/FSI-ROM-Predictor.
 
 ## References
 
-[1] [TODO: add new paper reference]
+[1] Azzeddine Tiba, Florian de Vuyst, Iraj Mortazavi. Online adaptive non-intrusive model reduction via manifold interpolation and subspace updates: application to FSI convergence acceleration. 2026.
 
 [2] [Azzeddine Tiba, Thibault Dairay, Florian De Vuyst, Iraj Mortazavi, Juan-Pedro Berro Ramirez (2024). Machine-Learning Enhanced Predictors for Accelerated Convergence of Partitioned Fluid-Structure Interaction Simulations. arXiv preprint arXiv:2405.09941](https://doi.org/10.48550/arXiv.2405.09941)
 
